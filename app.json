@@ -1,0 +1,66 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/level/soldier",
+    "pages/level/battle",
+    "pages/level/strategy",
+    "pages/questionbank/index",
+    "pages/community/index",
+    "pages/community/team",
+    "pages/community/sandbox",
+    "pages/community/notes",
+    "pages/user/index",
+    "pages/user/rank",
+    "pages/user/medals",
+    "pages/admin/user",
+    "pages/admin/content",
+    "pages/admin/data"
+  ],
+  "window": {
+    "backgroundColor": "#1a1a2e",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#16213e",
+    "navigationBarTitleText": "兵工荣耀",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#7a7a8c",
+    "selectedColor": "#e94560",
+    "backgroundColor": "#16213e",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "闯关",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/questionbank/index",
+        "text": "题库",
+        "iconPath": "images/icons/business.png",
+        "selectedIconPath": "images/icons/business-active.png"
+      },
+      {
+        "pagePath": "pages/community/index",
+        "text": "社区",
+        "iconPath": "images/icons/goods.png",
+        "selectedIconPath": "images/icons/goods-active.png"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "text": "我的",
+        "iconPath": "images/icons/usercenter.png",
+        "selectedIconPath": "images/icons/usercenter-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于战区定位和排行榜展示"
+    }
+  }
+}
