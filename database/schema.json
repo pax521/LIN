@@ -1,0 +1,171 @@
+{
+  "users": {
+    "description": "用户信息集合",
+    "fields": {
+      "_id": "用户唯一标识",
+      "openid": "微信openid",
+      "nickname": "用户昵称",
+      "avatar": "用户头像",
+      "rank": "军衔（列兵/少尉/中尉/上尉/少校/中校/上校/少将/中将/上将/大将/元帅）",
+      "points": "积分",
+      "medals": "获得的勋章数组",
+      "role": "角色（user/vip/admin/dataAdmin）",
+      "province": "省份",
+      "teamId": "所属战队ID",
+      "totalQuestions": "总答题数",
+      "correctRate": "正确率",
+      "studyDays": "学习天数",
+      "createTime": "创建时间",
+      "updateTime": "更新时间"
+    },
+    "indexes": [
+      { "field": "openid", "unique": true },
+      { "field": "points" },
+      { "field": "province" },
+      { "field": "teamId" }
+    ]
+  },
+  "questions": {
+    "description": "题目集合",
+    "fields": {
+      "_id": "题目唯一标识",
+      "question": "题目内容",
+      "options": "选项数组",
+      "correct": "正确答案索引",
+      "category": "分类（military/weapon/history/strategy/defense）",
+      "difficulty": "难度（easy/medium/hard）",
+      "level": "关卡（soldier/battle/strategy）",
+      "views": "浏览次数",
+      "correctCount": "正确次数",
+      "totalCount": "答题总次数",
+      "explanation": "题目解析",
+      "createTime": "创建时间",
+      "updateTime": "更新时间",
+      "status": "状态（active/inactive）"
+    },
+    "indexes": [
+      { "field": "category" },
+      { "field": "difficulty" },
+      { "field": "level" },
+      { "field": "correctRate" }
+    ]
+  },
+  "posts": {
+    "description": "社区动态集合",
+    "fields": {
+      "_id": "动态唯一标识",
+      "userId": "发布者ID",
+      "content": "动态内容",
+      "images": "图片数组",
+      "likes": "点赞数",
+      "comments": "评论数",
+      "status": "状态（pending/approved/rejected）",
+      "createTime": "创建时间",
+      "updateTime": "更新时间"
+    },
+    "indexes": [
+      { "field": "userId" },
+      { "field": "status" },
+      { "field": "createTime" }
+    ]
+  },
+  "teams": {
+    "description": "战队集合",
+    "fields": {
+      "_id": "战队唯一标识",
+      "name": "战队名称",
+      "avatar": "战队头像",
+      "desc": "战队描述",
+      "leaderId": "队长ID",
+      "members": "成员ID数组",
+      "maxMembers": "最大成员数",
+      "score": "战队积分",
+      "rank": "战队排名",
+      "status": "状态（recruiting/full/disbanded）",
+      "createTime": "创建时间",
+      "updateTime": "更新时间"
+    },
+    "indexes": [
+      { "field": "leaderId" },
+      { "field": "score" },
+      { "field": "rank" }
+    ]
+  },
+  "notes": {
+    "description": "学习笔记集合",
+    "fields": {
+      "_id": "笔记唯一标识",
+      "userId": "作者ID",
+      "title": "笔记标题",
+      "content": "笔记内容",
+      "likes": "点赞数",
+      "comments": "评论数",
+      "status": "状态（pending/approved/rejected）",
+      "createTime": "创建时间",
+      "updateTime": "更新时间"
+    },
+    "indexes": [
+      { "field": "userId" },
+      { "field": "status" },
+      { "field": "createTime" }
+    ]
+  },
+  "battles": {
+    "description": "对战记录集合",
+    "fields": {
+      "_id": "对战唯一标识",
+      "team1Id": "战队1 ID",
+      "team2Id": "战队2 ID",
+      "team1Score": "战队1得分",
+      "team2Score": "战队2得分",
+      "map": "地图名称",
+      "status": "状态（ongoing/finished）",
+      "winnerId": "获胜战队ID",
+      "viewers": "观战人数",
+      "createTime": "创建时间",
+      "updateTime": "更新时间"
+    },
+    "indexes": [
+      { "field": "team1Id" },
+      { "field": "team2Id" },
+      { "field": "status" }
+    ]
+  },
+  "records": {
+    "description": "答题记录集合",
+    "fields": {
+      "_id": "记录唯一标识",
+      "userId": "用户ID",
+      "questionId": "题目ID",
+      "answer": "用户答案",
+      "isCorrect": "是否正确",
+      "timeUsed": "用时（秒）",
+      "level": "关卡",
+      "createTime": "创建时间"
+    },
+    "indexes": [
+      { "field": "userId" },
+      { "field": "questionId" },
+      { "field": "createTime" }
+    ]
+  },
+  "rankings": {
+    "description": "排行榜集合",
+    "fields": {
+      "_id": "排名唯一标识",
+      "type": "类型（province/national/team）",
+      "userId": "用户ID（个人排名）",
+      "teamId": "战队ID（战队排名）",
+      "province": "省份（省级排名）",
+      "score": "积分",
+      "rank": "排名",
+      "change": "排名变化（up/down/same）",
+      "updateTime": "更新时间"
+    },
+    "indexes": [
+      { "field": "type" },
+      { "field": "province" },
+      { "field": "rank" }
+    ]
+  }
+}
