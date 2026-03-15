@@ -1,0 +1,134 @@
+<view class="container">
+  <view class="header">
+    <text class="header-title">沙盘观战</text>
+  </view>
+
+  <view class="battles-list" wx:if="{{!showBattle && !loading}}">
+    <view 
+      class="battle-card {{item.status === 'finished' ? 'finished' : ''}}"
+      wx:for="{{battles}}"
+      wx:key="id"
+      bindtap="viewBattle"
+      data-id="{{item.id}}"
+    >
+      <view class="battle-status">
+        <text class="status-dot {{item.status}}"></text>
+        <text class="status-text">{{item.status === 'ongoing' ? '进行中' : '已结束'}}</text>
+      </view>
+
+      <view class="battle-map">
+        <text class="map-icon">🗺️</text>
+        <text class="map-name">{{item.map}}</text>
+      </view>
+
+      <view class="battle-teams">
+        <view class="team-info">
+          <text class="team-avatar">{{item.team1.avatar}}</text>
+          <text class="team-name">{{item.team1.name}}</text>
+          <text class="team-score">{{item.team1.score}}</text>
+        </view>
+
+        <view class="vs-divider">
+          <text class="vs-text">VS</text>
+        </view>
+
+        <view class="team-info">
+          <text class="team-avatar">{{item.team2.avatar}}</text>
+          <text class="team-name">{{item.team2.name}}</text>
+          <text class="team-score">{{item.team2.score}}</text>
+        </view>
+      </view>
+
+      <view class="battle-footer">
+        <view class="viewers">
+          <text class="viewers-icon">👁</text>
+          <text class="viewers-count">{{item.viewers}}</text>
+        </view>
+        <view class="watch-btn">
+          <text class="watch-text">{{item.status === 'ongoing' ? '观战' : '回放'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:if="{{battles.length === 0}}">
+      <text class="empty-icon">🗺️</text>
+      <text class="empty-text">暂无对战</text>
+    </view>
+  </view>
+
+  <view class="battle-view" wx:if="{{showBattle && currentBattle}}">
+    <view class="battle-header">
+      <view class="back-btn" bindtap="closeBattle">
+        <text class="back-icon">✕</text>
+      </view>
+      <text class="battle-title">{{currentBattle.map}}</text>
+      <view class="live-badge">
+        <text class="live-text">LIVE</text>
+      </view>
+    </view>
+
+    <view class="battle-arena">
+      <view class="arena-map">
+        <view class="map-grid">
+          <view class="grid-item" wx:for="{{20}}" wx:key="*this">
+            <text class="grid-icon">{{index % 3 === 0 ? '🏔️' : index % 5 === 0 ? '🌲' : ''}}</text>
+          </view>
+        </view>
+        
+        <view class="team-marker team1">
+          <text class="marker-avatar">{{currentBattle.team1.avatar}}</text>
+          <view class="marker-label">{{currentBattle.team1.name}}</view>
+        </view>
+
+        <view class="team-marker team2">
+          <text class="marker-avatar">{{currentBattle.team2.avatar}}</text>
+          <view class="marker-label">{{currentBattle.team2.name}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="battle-scoreboard">
+      <view class="score-item">
+        <text class="score-avatar">{{currentBattle.team1.avatar}}</text>
+        <text class="score-name">{{currentBattle.team1.name}}</text>
+        <text class="score-value">{{currentBattle.team1.score}}</text>
+      </view>
+
+      <view class="score-divider">
+        <text class="divider-text">VS</text>
+      </view>
+
+      <view class="score-item">
+        <text class="score-avatar">{{currentBattle.team2.avatar}}</text>
+        <text class="score-name">{{currentBattle.team2.name}}</text>
+        <text class="score-value">{{currentBattle.team2.score}}</text>
+      </view>
+    </view>
+
+    <view class="battle-danmu">
+      <view class="danmu-list">
+        <view class="danmu-item">
+          <text class="danmu-user">兵工爱好者：</text>
+          <text class="danmu-text">铁血战队加油！</text>
+        </view>
+        <view class="danmu-item">
+          <text class="danmu-user">国防小卫士：</text>
+          <text class="danmu-text">这波操作太精彩了！</text>
+        </view>
+        <view class="danmu-item">
+          <text class="danmu-user">战术大师：</text>
+          <text class="danmu-text">高地争夺战的关键时刻</text>
+        </view>
+      </view>
+
+      <view class="danmu-input">
+        <input class="input-field" placeholder="发送弹幕..." />
+        <button class="send-btn" bindtap="sendDanmu">发送</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

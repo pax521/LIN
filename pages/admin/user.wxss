@@ -1,0 +1,294 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #1a1a2e;
+  padding-bottom: 40rpx;
+}
+
+.header {
+  padding: 30rpx;
+  background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+}
+
+.header-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #eaeaea;
+}
+
+.tabs {
+  display: flex;
+  padding: 20rpx 30rpx;
+  background: #16213e;
+  gap: 20rpx;
+}
+
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  padding: 16rpx;
+  border-radius: 12rpx;
+  background: rgba(15, 52, 96, 0.3);
+  border: 2rpx solid transparent;
+  transition: all 0.3s;
+}
+
+.tab-item.active {
+  background: rgba(233, 69, 96, 0.2);
+  border-color: #e94560;
+}
+
+.tab-icon {
+  font-size: 32rpx;
+}
+
+.tab-name {
+  font-size: 22rpx;
+  color: #eaeaea;
+}
+
+.content {
+  padding: 30rpx;
+}
+
+.users-list,
+.contents-list,
+.configs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.user-card,
+.content-card,
+.config-card {
+  background: #16213e;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.3);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.user-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  border: 2rpx solid #e94560;
+}
+
+.user-detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.user-nickname {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #eaeaea;
+}
+
+.user-meta {
+  font-size: 22rpx;
+  color: #7a7a8c;
+}
+
+.user-points {
+  display: flex;
+  align-items: baseline;
+  gap: 4rpx;
+  padding: 12rpx 20rpx;
+  background: rgba(233, 69, 96, 0.1);
+  border-radius: 20rpx;
+}
+
+.points-value {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #e94560;
+}
+
+.points-label {
+  font-size: 20rpx;
+  color: #7a7a8c;
+}
+
+.user-status {
+  margin-bottom: 20rpx;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+}
+
+.status-badge.active {
+  background: rgba(74, 222, 128, 0.2);
+  color: #4ade80;
+}
+
+.status-badge.banned {
+  background: rgba(233, 69, 96, 0.2);
+  color: #e94560;
+}
+
+.status-badge.pending {
+  background: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+}
+
+.status-badge.approved {
+  background: rgba(74, 222, 128, 0.2);
+  color: #4ade80;
+}
+
+.status-badge.rejected {
+  background: rgba(233, 69, 96, 0.2);
+  color: #e94560;
+}
+
+.status-text {
+  font-weight: bold;
+}
+
+.user-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.action-btn {
+  flex: 1;
+  height: 64rpx;
+  line-height: 64rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.action-btn.primary {
+  background: linear-gradient(135deg, #e94560 0%, #d6354f 100%);
+  color: #fff;
+}
+
+.action-btn.danger {
+  background: rgba(233, 69, 96, 0.2);
+  border: 2rpx solid #e94560;
+  color: #e94560;
+}
+
+.action-btn.success {
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+  color: #1a1a2e;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.content-type {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 8rpx 16rpx;
+  background: rgba(15, 52, 96, 0.3);
+  border-radius: 20rpx;
+}
+
+.type-icon {
+  font-size: 24rpx;
+}
+
+.type-text {
+  font-size: 22rpx;
+  color: #eaeaea;
+}
+
+.content-time {
+  font-size: 22rpx;
+  color: #7a7a8c;
+}
+
+.content-body {
+  margin-bottom: 20rpx;
+}
+
+.content-author {
+  display: block;
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #eaeaea;
+  margin-bottom: 12rpx;
+}
+
+.content-text {
+  font-size: 24rpx;
+  color: #7a7a8c;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.content-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20rpx;
+  border-top: 2rpx solid rgba(255, 255, 255, 0.1);
+}
+
+.content-actions {
+  display: flex;
+  gap: 12rpx;
+}
+
+.config-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.config-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #eaeaea;
+}
+
+.config-desc {
+  font-size: 22rpx;
+  color: #7a7a8c;
+}
+
+.config-switch {
+  flex-shrink: 0;
+}
+
+.loading-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100rpx 0;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #7a7a8c;
+}

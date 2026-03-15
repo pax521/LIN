@@ -1,0 +1,259 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #1a1a2e;
+  padding: 30rpx;
+  padding-bottom: 120rpx;
+}
+
+.question-card {
+  background: #16213e;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.3);
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.question-meta {
+  display: flex;
+  gap: 12rpx;
+}
+
+.meta-tag {
+  padding: 8rpx 16rpx;
+  background: rgba(15, 52, 96, 0.5);
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  color: #eaeaea;
+}
+
+.meta-tag.difficulty-easy {
+  background: rgba(74, 222, 128, 0.2);
+  color: #4ade80;
+}
+
+.meta-tag.difficulty-medium {
+  background: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+}
+
+.meta-tag.difficulty-hard {
+  background: rgba(233, 69, 96, 0.2);
+  color: #e94560;
+}
+
+.question-stats {
+  display: flex;
+  gap: 20rpx;
+}
+
+.stat-item {
+  font-size: 22rpx;
+  color: #7a7a8c;
+}
+
+.question-content {
+  margin-bottom: 40rpx;
+}
+
+.question-text {
+  font-size: 32rpx;
+  color: #eaeaea;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 24rpx;
+  background: rgba(15, 52, 96, 0.3);
+  border-radius: 12rpx;
+  border: 2rpx solid transparent;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.option-item:active {
+  transform: scale(0.98);
+}
+
+.option-item.selected {
+  background: rgba(233, 69, 96, 0.1);
+  border-color: #e94560;
+}
+
+.option-item.correct {
+  background: rgba(74, 222, 128, 0.2);
+  border-color: #4ade80;
+}
+
+.option-item.wrong {
+  background: rgba(233, 69, 96, 0.2);
+  border-color: #e94560;
+}
+
+.option-label {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f3460;
+  border-radius: 50%;
+  font-size: 24rpx;
+  color: #eaeaea;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.option-item.correct .option-label {
+  background: #4ade80;
+  color: #1a1a2e;
+}
+
+.option-item.wrong .option-label {
+  background: #e94560;
+  color: #fff;
+}
+
+.option-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: #eaeaea;
+  line-height: 1.5;
+}
+
+.option-status {
+  position: absolute;
+  right: 24rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4ade80;
+  border-radius: 50%;
+}
+
+.option-status.wrong {
+  background: #e94560;
+}
+
+.status-icon {
+  font-size: 28rpx;
+  color: #fff;
+  font-weight: bold;
+}
+
+.explanation-section {
+  padding: 30rpx;
+  background: rgba(15, 52, 96, 0.3);
+  border-radius: 16rpx;
+  margin-bottom: 30rpx;
+  border-left: 4rpx solid #fbbf24;
+}
+
+.explanation-header {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 16rpx;
+}
+
+.explanation-icon {
+  font-size: 28rpx;
+}
+
+.explanation-title {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #fbbf24;
+}
+
+.explanation-text {
+  font-size: 26rpx;
+  color: #eaeaea;
+  line-height: 1.6;
+}
+
+.result-section {
+  margin-bottom: 30rpx;
+}
+
+.result-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  padding: 30rpx;
+  border-radius: 16rpx;
+}
+
+.result-card.correct {
+  background: rgba(74, 222, 128, 0.2);
+}
+
+.result-card.wrong {
+  background: rgba(233, 69, 96, 0.2);
+}
+
+.result-icon {
+  font-size: 40rpx;
+}
+
+.result-text {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #eaeaea;
+}
+
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 20rpx;
+  padding: 20rpx 30rpx;
+  background: #16213e;
+  border-top: 2rpx solid rgba(255, 255, 255, 0.1);
+}
+
+.action-btn {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #7a7a8c;
+}

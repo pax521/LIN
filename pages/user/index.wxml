@@ -1,0 +1,94 @@
+<view class="container">
+  <view class="user-header">
+    <view class="user-info" wx:if="{{userInfo}}" bindtap="login">
+      <image class="user-avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      <view class="user-detail">
+        <text class="user-nickname">{{userInfo.nickName}}</text>
+        <view class="user-badges">
+          <view class="badge-item">
+            <text class="badge-icon">⭐</text>
+            <text class="badge-text">{{userRank}}</text>
+          </view>
+          <view class="badge-item vip" wx:if="{{isVIP}}">
+            <text class="badge-icon">👑</text>
+            <text class="badge-text">VIP</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="user-info" wx:else bindtap="login">
+      <view class="user-avatar-placeholder">
+        <text class="placeholder-icon">👤</text>
+      </view>
+      <view class="user-detail">
+        <text class="user-nickname">点击登录</text>
+        <text class="user-tip">登录后解锁更多功能</text>
+      </view>
+    </view>
+
+    <view class="user-points">
+      <text class="points-label">积分</text>
+      <text class="points-value">{{userPoints}}</text>
+    </view>
+  </view>
+
+  <view class="stats-section">
+    <view class="stat-card">
+      <text class="stat-icon">📝</text>
+      <text class="stat-value">{{stats.totalQuestions}}</text>
+      <text class="stat-label">答题数</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-icon">✓</text>
+      <text class="stat-value">{{stats.correctRate}}%</text>
+      <text class="stat-label">正确率</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-icon">📅</text>
+      <text class="stat-value">{{stats.studyDays}}</text>
+      <text class="stat-label">学习天数</text>
+    </view>
+    <view class="stat-card" wx:if="{{teamId}}">
+      <text class="stat-icon">👥</text>
+      <text class="stat-value">{{stats.teamScore}}</text>
+      <text class="stat-label">战队积分</text>
+    </view>
+  </view>
+
+  <view class="medals-preview">
+    <view class="section-header">
+      <text class="section-title">我的勋章</text>
+      <text class="section-more" bindtap="navigateTo" data-path="/pages/user/medals">查看全部 ></text>
+    </view>
+    <scroll-view class="medals-scroll" scroll-x>
+      <view class="medal-item" wx:for="{{userMedals}}" wx:key="*this">
+        <text class="medal-icon">🎖️</text>
+        <text class="medal-name">{{item}}</text>
+      </view>
+      <view class="medal-item empty" wx:if="{{userMedals.length === 0}}">
+        <text class="medal-icon">📭</text>
+        <text class="medal-name">暂无勋章</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="menu-section">
+    <view 
+      class="menu-item"
+      wx:for="{{menuItems}}"
+      wx:key="id"
+      bindtap="navigateTo"
+      data-path="{{item.path}}"
+    >
+      <view class="menu-left">
+        <text class="menu-icon">{{item.icon}}</text>
+        <text class="menu-name">{{item.name}}</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="footer">
+    <text class="footer-text">兵工荣耀 · 科技赋能国防教育</text>
+  </view>
+</view>

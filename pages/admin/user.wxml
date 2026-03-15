@@ -1,0 +1,102 @@
+<view class="container">
+  <view class="header">
+    <text class="header-title">管理后台</text>
+  </view>
+
+  <view class="tabs">
+    <view 
+      class="tab-item {{activeTab === item.id ? 'active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="id"
+      bindtap="switchTab"
+      data-id="{{item.id}}"
+    >
+      <text class="tab-icon">{{item.icon}}</text>
+      <text class="tab-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="content" wx:if="{{!loading}}">
+    <view class="users-list" wx:if="{{activeTab === 'users'}}">
+      <view class="user-card" wx:for="{{users}}" wx:key="id">
+        <view class="user-info">
+          <image class="user-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+          <view class="user-detail">
+            <text class="user-nickname">{{item.nickname}}</text>
+            <text class="user-meta">{{item.rank}} · {{item.role === 'vip' ? 'VIP' : '普通'}}</text>
+          </view>
+        </view>
+
+        <view class="user-points">
+          <text class="points-value">{{item.points}}</text>
+          <text class="points-label">分</text>
+        </view>
+
+        <view class="user-status">
+          <view class="status-badge {{item.status}}">
+            <text class="status-text">{{item.status === 'active' ? '正常' : '封禁'}}</text>
+          </view>
+        </view>
+
+        <view class="user-actions">
+          <button 
+            class="action-btn {{item.status === 'active' ? 'danger' : 'primary'}}"
+            bindtap="toggleUserStatus"
+            data-id="{{item.id}}"
+          >
+            {{item.status === 'active' ? '封禁' : '解封'}}
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <view class="contents-list" wx:if="{{activeTab === 'content'}}">
+      <view class="content-card" wx:for="{{contents}}" wx:key="id">
+        <view class="content-header">
+          <view class="content-type">
+            <text class="type-icon">{{item.type === 'post' ? '📰' : '📝'}}</text>
+            <text class="type-text">{{item.type === 'post' ? '动态' : '笔记'}}</text>
+          </view>
+          <text class="content-time">{{item.time}}</text>
+        </view>
+
+        <view class="content-body">
+          <text class="content-author">{{item.author}}</text>
+          <text class="content-text">{{item.content}}</text>
+        </view>
+
+        <view class="content-footer">
+          <view class="status-badge {{item.status}}">
+            <text class="status-text">{{item.status === 'pending' ? '待审核' : item.status === 'approved' ? '已通过' : '已拒绝'}}</text>
+          </view>
+
+          <view class="content-actions" wx:if="{{item.status === 'pending'}}">
+            <button class="action-btn success" bindtap="approveContent" data-id="{{item.id}}">通过</button>
+            <button class="action-btn danger" bindtap="rejectContent" data-id="{{item.id}}">拒绝</button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="configs-list" wx:if="{{activeTab === 'config'}}">
+      <view class="config-card" wx:for="{{configs}}" wx:key="id">
+        <view class="config-info">
+          <text class="config-name">{{item.name}}</text>
+          <text class="config-desc">{{item.desc}}</text>
+        </view>
+
+        <switch 
+          class="config-switch"
+          checked="{{item.value}}"
+          bindchange="toggleConfig"
+          data-id="{{item.id}}"
+          color="#e94560"
+        />
+      </view>
+    </view>
+  </view>
+
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

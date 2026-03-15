@@ -1,0 +1,61 @@
+<view class="container" wx:if="{{question}}">
+  <view class="question-card">
+    <view class="question-header">
+      <view class="question-meta">
+        <view class="meta-tag">{{question.category === 'military' ? '军事理论' : question.category === 'weapon' ? '武器装备' : question.category === 'history' ? '军事历史' : question.category === 'strategy' ? '战略战术' : '国防教育'}}</view>
+        <view class="meta-tag difficulty-{{question.difficulty}}">{{question.difficulty === 'easy' ? '简单' : question.difficulty === 'medium' ? '中等' : '困难'}}</view>
+      </view>
+      <view class="question-stats">
+        <text class="stat-item">👁 {{question.views}}</text>
+        <text class="stat-item">✓ {{question.correctRate}}%</text>
+      </view>
+    </view>
+
+    <view class="question-content">
+      <text class="question-text">{{question.question}}</text>
+    </view>
+
+    <view class="options-list">
+      <view 
+        class="option-item {{selectedOption === index ? 'selected' : ''}} {{showAnswer && index === question.correct ? 'correct' : ''}} {{showAnswer && selectedOption === index && !isCorrect ? 'wrong' : ''}}"
+        wx:for="{{question.options}}"
+        wx:key="*this"
+        bindtap="selectOption"
+        data-index="{{index}}"
+      >
+        <view class="option-label">{{index === 0 ? 'A' : index === 1 ? 'B' : index === 2 ? 'C' : 'D'}}</view>
+        <text class="option-text">{{item}}</text>
+        <view class="option-status" wx:if="{{showAnswer && index === question.correct}}">
+          <text class="status-icon">✓</text>
+        </view>
+        <view class="option-status wrong" wx:if="{{showAnswer && selectedOption === index && !isCorrect}}">
+          <text class="status-icon">✗</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="explanation-section" wx:if="{{showAnswer}}">
+      <view class="explanation-header">
+        <text class="explanation-icon">💡</text>
+        <text class="explanation-title">题目解析</text>
+      </view>
+      <text class="explanation-text">{{question.explanation}}</text>
+    </view>
+
+    <view class="result-section" wx:if="{{showAnswer}}">
+      <view class="result-card {{isCorrect ? 'correct' : 'wrong'}}">
+        <text class="result-icon">{{isCorrect ? '🎉' : '💪'}}</text>
+        <text class="result-text">{{isCorrect ? '回答正确！+5分' : '回答错误，继续努力'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="action-bar">
+    <button class="action-btn secondary" bindtap="goBack">返回题库</button>
+    <button class="action-btn" bindtap="shareQuestion">分享题目</button>
+  </view>
+</view>
+
+<view class="loading-container" wx:if="{{!question}}">
+  <text class="loading-text">加载中...</text>
+</view>

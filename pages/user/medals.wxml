@@ -1,0 +1,40 @@
+<view class="container">
+  <view class="header">
+    <text class="header-title">我的勋章</text>
+  </view>
+
+  <view class="progress-section">
+    <view class="progress-card">
+      <text class="progress-icon">🎖️</text>
+      <text class="progress-value">{{obtainedCount}}/{{totalCount}}</text>
+      <text class="progress-label">已获得</text>
+    </view>
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{progressPercentage}}%"></view>
+    </view>
+    <text class="progress-text">完成度 {{progressPercentage}}%</text>
+  </view>
+
+  <view class="medals-list">
+    <view 
+      class="medal-card {{item.obtained ? 'obtained' : 'locked'}}"
+      wx:for="{{allMedals}}"
+      wx:key="id"
+      bindtap="viewMedal"
+      data-id="{{item.id}}"
+    >
+      <view class="medal-icon-wrapper {{item.obtained ? '' : 'locked'}}">
+        <text class="medal-icon">{{item.icon}}</text>
+      </view>
+      
+      <view class="medal-info">
+        <text class="medal-name">{{item.name}}</text>
+        <text class="medal-desc">{{item.desc}}</text>
+      </view>
+
+      <view class="medal-status">
+        <text class="status-icon">{{item.obtained ? '✓' : '🔒'}}</text>
+      </view>
+    </view>
+  </view>
+</view>

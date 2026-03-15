@@ -1,0 +1,115 @@
+<view class="container">
+  <view class="header">
+    <text class="header-title">创建战队</text>
+  </view>
+
+  <view class="form-section">
+    <view class="form-group">
+      <text class="form-label">战队名称</text>
+      <input 
+        class="form-input" 
+        placeholder="输入战队名称" 
+        value="{{teamName}}"
+        bindinput="onTeamNameInput"
+      />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">战队头像</text>
+      <view class="avatar-list">
+        <view 
+          class="avatar-item {{teamAvatar === '🛡️' ? 'active' : ''}}"
+          bindtap="selectAvatar"
+          data-index="0"
+        >
+          <text class="avatar-emoji">🛡️</text>
+        </view>
+        <view 
+          class="avatar-item {{teamAvatar === '⚔️' ? 'active' : ''}}"
+          bindtap="selectAvatar"
+          data-index="1"
+        >
+          <text class="avatar-emoji">⚔️</text>
+        </view>
+        <view 
+          class="avatar-item {{teamAvatar === '🎯' ? 'active' : ''}}"
+          bindtap="selectAvatar"
+          data-index="2"
+        >
+          <text class="avatar-emoji">🎯</text>
+        </view>
+        <view 
+          class="avatar-item {{teamAvatar === '🔥' ? 'active' : ''}}"
+          bindtap="selectAvatar"
+          data-index="3"
+        >
+          <text class="avatar-emoji">🔥</text>
+        </view>
+        <view 
+          class="avatar-item {{teamAvatar === '⚡' ? 'active' : ''}}"
+          bindtap="selectAvatar"
+          data-index="4"
+        >
+          <text class="avatar-emoji">⚡</text>
+        </view>
+        <view 
+          class="avatar-item {{teamAvatar === '🌟' ? 'active' : ''}}"
+          bindtap="selectAvatar"
+          data-index="5"
+        >
+          <text class="avatar-emoji">🌟</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">战队描述</text>
+      <textarea 
+        class="form-textarea" 
+        placeholder="输入战队描述"
+        value="{{teamDesc}}"
+        bindinput="onTeamDescInput"
+      ></textarea>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">最大成员数</text>
+      <view class="slider-container">
+        <slider 
+          class="form-slider" 
+          min="5" 
+          max="20" 
+          value="{{maxMembers}}"
+          bindchange="onSliderChange"
+          show-value
+        />
+      </view>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">选择角色</text>
+      <view class="roles-list">
+        <view 
+          class="role-item {{selectedRole === item.id ? 'active' : ''}}"
+          wx:for="{{roles}}"
+          wx:key="id"
+          bindtap="selectRole"
+          data-id="{{item.id}}"
+        >
+          <text class="role-icon">{{item.icon}}</text>
+          <view class="role-info">
+            <text class="role-name">{{item.name}}</text>
+            <text class="role-desc">{{item.desc}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="action-section">
+    <button class="action-btn secondary" bindtap="goBack">取消</button>
+    <button class="action-btn" bindtap="createTeam" disabled="{{loading}}">
+      {{loading ? '创建中...' : '创建战队'}}
+    </button>
+  </view>
+</view>

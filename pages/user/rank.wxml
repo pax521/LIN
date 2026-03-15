@@ -1,0 +1,58 @@
+<view class="container">
+  <view class="header">
+    <text class="header-title">排行榜</text>
+  </view>
+
+  <view class="tabs">
+    <view 
+      class="tab-item {{activeTab === item.id ? 'active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="id"
+      bindtap="switchTab"
+      data-id="{{item.id}}"
+    >
+      <text class="tab-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="rankings-list" wx:if="{{!loading}}">
+    <view 
+      class="rank-item {{item.rank <= 3 ? 'top' : ''}}"
+      wx:for="{{rankings}}"
+      wx:key="rank"
+    >
+      <view class="rank-number {{item.rank <= 3 ? 'top' : ''}}">
+        <text class="rank-text">{{item.rank}}</text>
+      </view>
+
+      <view class="rank-avatar">
+        <image class="avatar-img" src="{{item.avatar}}" mode="aspectFill" wx:if="{{activeTab !== 'team'}}"></image>
+        <text class="avatar-emoji" wx:else>{{item.avatar}}</text>
+      </view>
+
+      <view class="rank-info">
+        <text class="rank-name">{{item.name}}</text>
+        <text class="rank-detail" wx:if="{{activeTab !== 'team'}}">{{item.province}}</text>
+        <text class="rank-detail" wx:else>{{item.members}}人</text>
+      </view>
+
+      <view class="rank-points">
+        <text class="points-value">{{item.points}}</text>
+        <text class="points-label">分</text>
+      </view>
+
+      <view class="rank-change">
+        <text class="change-icon" style="color: {{getChangeColor(item.change)}}">{{getChangeIcon(item.change)}}</text>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:if="{{rankings.length === 0}}">
+      <text class="empty-icon">🏅</text>
+      <text class="empty-text">暂无排名</text>
+    </view>
+  </view>
+
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

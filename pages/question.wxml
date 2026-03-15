@@ -1,0 +1,33 @@
+<!-- question.wxml -->
+<view class="container">
+  <!-- 顶部：进度和计时器 -->
+  <view class="header">
+    <text class="progress">第 {{current + 1}} 题 / 共 {{total}} 题</text>
+    <text class="timer">时间: {{time}}秒</text>
+  </view>
+
+  <!-- 题目区域 -->
+  <view class="question-section">
+    <text class="question-text">{{question.title}}</text>
+  </view>
+
+  <!-- 选项区域 -->
+  <view class="options-section">
+    <block wx:for="{{question.options}}" wx:key="index">
+      <button 
+        class="option-btn {{selectedIndex === index ? 'selected' : ''}}"
+        bindtap="selectOption"
+        data-index="{{index}}"
+      >
+        {{item}}
+      </button>
+    </block>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="footer">
+    <button class="submit-btn" bindtap="submitAnswer" disabled="{{selectedIndex === null}}">
+      {{isLast ? '提交并查看结果' : '下一题'}}
+    </button>
+  </view>
+</view>

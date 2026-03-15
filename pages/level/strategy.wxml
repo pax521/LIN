@@ -1,0 +1,75 @@
+<view class="container" wx:if="{{!showResult}}">
+  <view class="header">
+    <view class="progress">
+      <text class="progress-text">{{currentQuestion + 1}}/{{questions.length}}</text>
+    </view>
+    <view class="timer">
+      <text class="timer-text">{{timeLeft}}s</text>
+    </view>
+  </view>
+
+  <view class="question-card">
+    <view class="level-badge">
+      <text class="badge-icon">🏆</text>
+      <text class="badge-text">战略推演</text>
+    </view>
+
+    <view class="question-content">
+      <text class="question-text">{{questions[currentQuestion].question}}</text>
+    </view>
+
+    <view class="options-list">
+      <view 
+        class="option-item {{userAnswers[currentQuestion] === index ? 'selected' : ''}}"
+        wx:for="{{questions[currentQuestion].options}}"
+        wx:key="*this"
+        bindtap="selectAnswer"
+        data-index="{{index}}"
+      >
+        <view class="option-label">{{index === 0 ? 'A' : index === 1 ? 'B' : index === 2 ? 'C' : 'D'}}</view>
+        <text class="option-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="score-display">
+    <text class="score-label">当前得分</text>
+    <text class="score-value">{{score}}</text>
+  </view>
+</view>
+
+<view class="result-container" wx:if="{{showResult}}">
+  <view class="result-card">
+    <view class="result-icon">🏆</view>
+    <text class="result-title">战略推演完成</text>
+    
+    <view class="score-section">
+      <text class="final-score">{{score}}</text>
+      <text class="score-unit">分</text>
+    </view>
+
+    <view class="result-detail">
+      <view class="detail-item">
+        <text class="detail-label">答题数量</text>
+        <text class="detail-value">{{questions.length}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">正确数量</text>
+        <text class="detail-value">{{score / 30}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">正确率</text>
+        <text class="detail-value">{{correctRate}}%</text>
+      </view>
+    </view>
+
+    <view class="result-message" wx:if="{{score >= 210}}">
+      <text class="message-text">恭喜！您已获得"战略推演完成"和"兵工荣耀大师"勋章</text>
+    </view>
+
+    <view class="result-actions">
+      <button class="action-btn secondary" bindtap="goBack">返回</button>
+      <button class="action-btn" bindtap="restart">再来一次</button>
+    </view>
+  </view>
+</view>

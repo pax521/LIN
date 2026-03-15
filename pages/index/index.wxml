@@ -1,0 +1,83 @@
+<view class="container">
+  <view class="header">
+    <view class="user-info">
+      <image class="avatar" src="{{userInfo ? userInfo.avatarUrl : '/images/icons/avatar.png'}}" mode="aspectFill"></image>
+      <view class="user-detail">
+        <text class="nickname">{{userInfo ? userInfo.nickName : '未登录'}}</text>
+        <view class="rank-badge">
+          <text class="rank-icon">⭐</text>
+          <text class="rank-text">{{userRank}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="points-display">
+      <text class="points-label">积分</text>
+      <text class="points-value">{{userPoints}}</text>
+    </view>
+  </view>
+
+  <view class="banner">
+    <view class="banner-content">
+      <text class="banner-title">兵工荣耀</text>
+      <text class="banner-subtitle">科技赋能国防教育</text>
+    </view>
+  </view>
+
+  <view class="section-title">
+    <text class="title-text">闯关模式</text>
+    <text class="more-text" bindtap="goToRank">排行榜 ></text>
+  </view>
+
+  <view class="level-list">
+    <view class="level-item" wx:for="{{levelData}}" wx:key="id" bindtap="startLevel" data-path="{{item.path}}" data-locked="{{item.locked}}">
+      <view class="level-icon" style="background: {{item.locked ? '#333' : item.color}}20">
+        <text class="icon-text">{{item.icon}}</text>
+      </view>
+      <view class="level-info">
+        <view class="level-header">
+          <text class="level-name">{{item.name}}</text>
+          <text class="lock-icon" wx:if="{{item.locked}}">🔒</text>
+        </view>
+        <text class="level-desc">{{item.desc}}</text>
+      </view>
+      <view class="level-arrow">
+        <text class="arrow-text">›</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-title">
+    <text class="title-text">荣誉展示</text>
+    <text class="more-text" bindtap="goToMedals">我的勋章 ></text>
+  </view>
+
+  <view class="medals-section">
+    <view class="province-rank">
+      <text class="rank-label">省级排名</text>
+      <text class="rank-number">{{provinceRank || '--'}}</text>
+    </view>
+    <view class="medal-count">
+      <text class="medal-label">获得勋章</text>
+      <text class="medal-number">{{userMedals ? userMedals.length : 0}}</text>
+    </view>
+  </view>
+
+  <view class="quick-actions">
+    <view class="action-item" bindtap="goToRank">
+      <text class="action-icon">🏅</text>
+      <text class="action-text">排行榜</text>
+    </view>
+    <view class="action-item" bindtap="goToMedals">
+      <text class="action-icon">🎖️</text>
+      <text class="action-text">勋章墙</text>
+    </view>
+    <view class="action-item" bindtap="goToTeam">
+      <text class="action-icon">👥</text>
+      <text class="action-text">组队对抗</text>
+    </view>
+    <view class="action-item" bindtap="goToBattle">
+      <text class="action-icon">⚔️</text>
+      <text class="action-text">对战PK</text>
+    </view>
+  </view>
+</view>

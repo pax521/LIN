@@ -1,0 +1,96 @@
+<view class="room-container">
+  <view wx:if="{{!roomData}}" class="loading">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <view wx:else>
+    <view class="room-header">
+      <view class="room-info">
+        <text class="room-code">房间号: {{roomCode}}</text>
+        <text class="room-status">{{roomData.status === 'waiting' ? '等待对手' : '对战中'}}</text>
+      </view>
+    </view>
+
+    <view class="players-section">
+      <view class="player-card">
+        <image class="player-avatar" src="{{roomData.hostAvatar}}" mode="aspectFill" />
+        <text class="player-name">{{roomData.hostName}}</text>
+        <text class="player-score">{{roomData.hostScore}}分</text>
+      </view>
+
+      <view class="vs-badge">VS</view>
+
+      <view class="player-card">
+        <image class="player-avatar" src="{{roomData.guestAvatar || '/images/default-avatar.png'}}" mode="aspectFill" />
+        <text class="player-name">{{roomData.guestName || '等待加入'}}</text>
+        <text class="player-score">{{roomData.guestScore || 0}}分</text>
+      </view>
+    </view>
+
+    <view wx:if="{{roomData.status === 'waiting'}}" class="waiting-section">
+      <text class="waiting-text">等待对手加入...</text>
+      <text class="room-code-display">{{roomCode}}</text>
+      <text class="tip-text">分享房间号给好友</text>
+    </view>
+
+    <view wx:if="{{roomData.status === 'playing' && currentQuestion && !battleFinished}}" class="battle-section">
+      <view class="round-info">
+        <text class="round-text">第 {{currentRound}} / {{roomData.roundCount}} 回合</text>
+      </view>
+
+      <view class="question-card">
+        <text class="question-text">{{currentQuestion.question}}</text>
+      </view>
+
+      <view class="options-list">
+        <view 
+          wx:for="{{currentQuestion.options}}" 
+          wx:key="index"
+          class="option-item {{selectedAnswer === index ? 'selected' : ''}} {{answered && showResult && roundResult && roundResult.opponentAnswer && roundResult.opponentAnswer.answer === index ? 'opponent' : ''}}"
+          bindtap="selectAnswer"
+          data-index="{{index}}"
+        >
+          <text class="option-label">{{index === 0 ? 'A' : index === 1 ? 'B' : index === 2 ? 'C' : 'D'}}</text>
+          <text class="option-text">{{item}}</text>
+          <text wx:if="{{answered && showResult && roundResult && roundResult.opponentAnswer && roundResult.opponentAnswer.answer === index}}" class="opponent-badge">对手选择</text>
+        </view>
+      </view>
+
+      <button class="submit-btn" bindtap="submitAnswer" disabled="{{answered || selectedAnswer === null}}">
+        {{answered ? '已提交' : '提交答案'}}
+      </button>
+
+      <view wx:if="{{showResult && roundResult}}" class="result-overlay">
+        <view class="result-card">
+          <text class="result-title">{{roundResult.isCorrect ? '回答正确' : '回答错误'}}</text>
+          <text class="result-score">+{{roundResult.score}}分</text>
+          <text class="result-total">总分: {{roundResult.totalScore}}</text>
+          <text wx:if="{{opponentAnswered}}" class="opponent-status">对手已答题</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{battleFinished}}" class="result-section">
+      <view class="result-header">
+        <text class="result-title">{{winner === 'win' ? '🎉 胜利！' : winner === 'lose' ? '😢 失败' : '🤝 平局'}}</text>
+      </view>
+
+      <view class="final-scores">
+        <view class="score-card">
+          <text class="score-label">{{roomData.hostName}}</text>
+          <text class="score-value">{{roomData.hostScore}}</text>
+        </view>
+        <view class="score-divider">-</view>
+        <view class="score-card">
+          <text class="score-label">{{roomData.guestName}}</text>
+          <text class="score-value">{{roomData.guestScore}}</text>
+        </view>
+      </view>
+
+      <view class="result-actions">
+        <button class="action-btn primary" bindtap="returnHome">返回首页</button>
+        <button class="action-btn secondary" bindtap="viewDetails">查看详情</button>
+      </view>
+    </view>
+  </view>
+</view>

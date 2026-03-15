@@ -1,0 +1,102 @@
+<view class="container">
+  <view class="header">
+    <text class="header-title">智能题库</text>
+    <view class="header-actions">
+      <view class="search-box">
+        <input 
+          class="search-input" 
+          placeholder="搜索题目..." 
+          value="{{searchKeyword}}"
+          bindinput="onSearchInput"
+        />
+        <text class="search-icon">🔍</text>
+      </view>
+      <view class="filter-btn" bindtap="toggleFilter">
+        <text class="filter-icon">{{showFilter ? '✕' : '🔽'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="filter-section" wx:if="{{showFilter}}">
+    <view class="filter-row">
+      <view class="filter-label">分类：</view>
+      <scroll-view class="category-scroll" scroll-x>
+        <view 
+          class="category-item {{selectedCategory === item.id ? 'active' : ''}}"
+          wx:for="{{categories}}"
+          wx:key="id"
+          bindtap="selectCategory"
+          data-id="{{item.id}}"
+        >
+          <text class="category-icon">{{item.icon}}</text>
+          <text class="category-name">{{item.name}}</text>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view class="filter-row">
+      <view class="filter-label">难度：</view>
+      <scroll-view class="difficulty-scroll" scroll-x>
+        <view 
+          class="difficulty-item {{selectedDifficulty === item.id ? 'active' : ''}}"
+          wx:for="{{difficulties}}"
+          wx:key="id"
+          bindtap="selectDifficulty"
+          data-id="{{item.id}}"
+        >
+          <text class="difficulty-name">{{item.name}}</text>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view class="stats-bar">
+    <view class="stat-item">
+      <text class="stat-label">题目总数</text>
+      <text class="stat-value">{{filteredQuestions.length}}</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-label">平均正确率</text>
+      <text class="stat-value">{{averageCorrectRate}}%</text>
+    </view>
+    <button class="random-btn" bindtap="startRandomQuiz">随机练习</button>
+  </view>
+
+  <view class="questions-list" wx:if="{{!loading}}">
+    <view 
+      class="question-card"
+      wx:for="{{filteredQuestions}}"
+      wx:key="id"
+      bindtap="viewQuestion"
+      data-id="{{item.id}}"
+    >
+      <view class="question-header">
+        <view class="question-category">{{item.categoryName}}</view>
+        <view class="question-difficulty" style="color: {{item.difficultyColor}}">
+          {{item.difficultyText}}
+        </view>
+      </view>
+      
+      <view class="question-content">
+        <text class="question-text">{{item.question}}</text>
+      </view>
+
+      <view class="question-footer">
+        <view class="question-stats">
+          <text class="stat-text">👁 {{item.views}}</text>
+          <text class="stat-text">✓ {{item.correctRate}}%</text>
+        </view>
+        <view class="question-arrow">›</view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:if="{{filteredQuestions.length === 0}}">
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">暂无符合条件的题目</text>
+    </view>
+  </view>
+
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

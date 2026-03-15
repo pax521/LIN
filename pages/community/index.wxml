@@ -1,0 +1,163 @@
+<view class="container">
+  <view class="header">
+    <text class="header-title">社区协作</text>
+    <view class="create-btn" bindtap="createPost">
+      <text class="create-icon">✏️</text>
+    </view>
+  </view>
+
+  <view class="tabs">
+    <view 
+      class="tab-item {{activeTab === item.id ? 'active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="id"
+      bindtap="switchTab"
+      data-id="{{item.id}}"
+    >
+      <text class="tab-icon">{{item.icon}}</text>
+      <text class="tab-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="posts-list" wx:if="{{activeTab === 'posts' && !loading}}">
+      <view 
+        class="post-card"
+        wx:for="{{posts}}"
+        wx:key="id"
+        bindtap="viewPost"
+        data-id="{{item.id}}"
+      >
+        <view class="post-header">
+          <view class="user-info">
+            <image class="user-avatar" src="{{item.user.avatar}}" mode="aspectFill"></image>
+            <view class="user-detail">
+              <text class="user-nickname">{{item.user.nickname}}</text>
+              <text class="user-rank">{{item.user.rank}}</text>
+            </view>
+          </view>
+          <text class="post-time">{{item.time}}</text>
+        </view>
+
+        <view class="post-content">
+          <text class="post-text">{{item.content}}</text>
+        </view>
+
+        <view class="post-footer">
+          <view class="post-action" catchtap="likePost" data-id="{{item.id}}">
+            <text class="action-icon">{{item.liked ? '❤️' : '🤍'}}</text>
+            <text class="action-text">{{item.likes}}</text>
+          </view>
+          <view class="post-action">
+            <text class="action-icon">💬</text>
+            <text class="action-text">{{item.comments}}</text>
+          </view>
+          <view class="post-action">
+            <text class="action-icon">🔗</text>
+            <text class="action-text">分享</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="empty-state" wx:if="{{posts.length === 0}}">
+        <text class="empty-icon">📭</text>
+        <text class="empty-text">暂无动态</text>
+      </view>
+    </view>
+
+    <view class="teams-list" wx:if="{{activeTab === 'team' && !loading}}">
+      <view class="team-card" wx:for="{{teams}}" wx:key="id">
+        <view class="team-header">
+          <text class="team-avatar">{{item.avatar}}</text>
+          <view class="team-info">
+            <text class="team-name">{{item.name}}</text>
+            <text class="team-leader">队长：{{item.leader}}</text>
+          </view>
+          <view class="team-rank">
+            <text class="rank-badge">#{{item.rank}}</text>
+          </view>
+        </view>
+
+        <view class="team-stats">
+          <view class="stat-item">
+            <text class="stat-label">成员</text>
+            <text class="stat-value">{{item.members}}/{{item.maxMembers}}</text>
+          </view>
+          <view class="stat-item">
+            <text class="stat-label">积分</text>
+            <text class="stat-value">{{item.score}}</text>
+          </view>
+        </view>
+
+        <view class="team-footer">
+          <button 
+            class="team-btn {{item.status === 'full' ? 'disabled' : ''}}"
+            bindtap="joinTeam"
+            data-id="{{item.id}}"
+            disabled="{{item.status === 'full'}}"
+          >
+            {{item.status === 'full' ? '已满员' : '加入战队'}}
+          </button>
+        </view>
+      </view>
+
+      <view class="create-team-section">
+        <button class="create-team-btn" bindtap="createTeam">创建战队</button>
+      </view>
+    </view>
+
+    <view class="sandbox-section" wx:if="{{activeTab === 'sandbox' && !loading}}">
+      <view class="sandbox-card">
+        <view class="sandbox-icon">🗺️</view>
+        <text class="sandbox-title">沙盘观战</text>
+        <text class="sandbox-desc">实时观战其他战队的战术推演</text>
+        <button class="sandbox-btn" bindtap="viewSandbox">进入沙盘</button>
+      </view>
+    </view>
+
+    <view class="notes-list" wx:if="{{activeTab === 'notes' && !loading}}">
+      <view 
+        class="note-card"
+        wx:for="{{notes}}"
+        wx:key="id"
+        bindtap="viewNote"
+        data-id="{{item.id}}"
+      >
+        <view class="note-header">
+          <view class="user-info">
+            <image class="user-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+            <view class="user-detail">
+              <text class="user-nickname">{{item.author}}</text>
+              <text class="user-rank">{{item.rank}}</text>
+            </view>
+          </view>
+          <text class="note-time">{{item.time}}</text>
+        </view>
+
+        <view class="note-content">
+          <text class="note-title">{{item.title}}</text>
+          <text class="note-text">{{item.content}}</text>
+        </view>
+
+        <view class="note-footer">
+          <view class="note-action">
+            <text class="action-icon">❤️</text>
+            <text class="action-text">{{item.likes}}</text>
+          </view>
+          <view class="note-action">
+            <text class="action-icon">💬</text>
+            <text class="action-text">{{item.comments}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="create-note-section">
+        <button class="create-note-btn" bindtap="createNote">创建笔记</button>
+      </view>
+    </view>
+
+    <view class="loading-state" wx:if="{{loading}}">
+      <text class="loading-text">加载中...</text>
+    </view>
+  </view>
+</view>

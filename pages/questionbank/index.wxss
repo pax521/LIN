@@ -1,0 +1,257 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #1a1a2e;
+  padding-bottom: 40rpx;
+}
+
+.header {
+  padding: 30rpx;
+  background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+}
+
+.header-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #eaeaea;
+  margin-bottom: 20rpx;
+}
+
+.header-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 30rpx;
+  padding: 16rpx 24rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 26rpx;
+  color: #eaeaea;
+}
+
+.search-icon {
+  font-size: 28rpx;
+  color: #7a7a8c;
+}
+
+.filter-btn {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(233, 69, 96, 0.2);
+  border-radius: 12rpx;
+}
+
+.filter-icon {
+  font-size: 28rpx;
+  color: #e94560;
+}
+
+.filter-section {
+  padding: 30rpx;
+  background: #16213e;
+  margin-bottom: 20rpx;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.filter-row:last-child {
+  margin-bottom: 0;
+}
+
+.filter-label {
+  font-size: 26rpx;
+  color: #7a7a8c;
+  white-space: nowrap;
+}
+
+.category-scroll,
+.difficulty-scroll {
+  flex: 1;
+  white-space: nowrap;
+}
+
+.category-item,
+.difficulty-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 12rpx 24rpx;
+  background: rgba(15, 52, 96, 0.5);
+  border-radius: 30rpx;
+  margin-right: 16rpx;
+  border: 2rpx solid transparent;
+}
+
+.category-item.active,
+.difficulty-item.active {
+  background: rgba(233, 69, 96, 0.2);
+  border-color: #e94560;
+}
+
+.category-icon {
+  font-size: 24rpx;
+}
+
+.category-name,
+.difficulty-name {
+  font-size: 24rpx;
+  color: #eaeaea;
+}
+
+.stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  background: #16213e;
+  margin: 0 30rpx 20rpx;
+  border-radius: 16rpx;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: #7a7a8c;
+}
+
+.stat-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #e94560;
+}
+
+.random-btn {
+  padding: 16rpx 32rpx;
+  background: linear-gradient(135deg, #e94560 0%, #d6354f 100%);
+  color: #fff;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.questions-list {
+  padding: 0 30rpx;
+}
+
+.question-card {
+  background: #16213e;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  border: 2rpx solid transparent;
+  transition: all 0.3s;
+}
+
+.question-card:active {
+  transform: scale(0.98);
+  border-color: rgba(233, 69, 96, 0.3);
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.question-category {
+  padding: 8rpx 16rpx;
+  background: rgba(15, 52, 96, 0.5);
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  color: #eaeaea;
+}
+
+.question-difficulty {
+  padding: 8rpx 16rpx;
+  background: rgba(251, 191, 36, 0.2);
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+.question-content {
+  margin-bottom: 20rpx;
+}
+
+.question-text {
+  font-size: 28rpx;
+  color: #eaeaea;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.question-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question-stats {
+  display: flex;
+  gap: 20rpx;
+}
+
+.stat-text {
+  font-size: 22rpx;
+  color: #7a7a8c;
+}
+
+.question-arrow {
+  font-size: 40rpx;
+  color: #7a7a8c;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100rpx 0;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #7a7a8c;
+}
+
+.loading-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100rpx 0;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #7a7a8c;
+}

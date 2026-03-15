@@ -1,0 +1,143 @@
+/* result.wxss */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0c2461 0%, #1e3799 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx;
+}
+
+.result-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 40rpx;
+  padding: 60rpx 50rpx;
+  width: 100%;
+  max-width: 700rpx;
+  box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #0c2461;
+  margin-bottom: 50rpx;
+}
+
+/* 分数区域 */
+.score-section {
+  margin: 40rpx 0;
+}
+
+.score {
+  display: block;
+  font-size: 120rpx;
+  font-weight: bold;
+  color: #e74c3c;
+  line-height: 1;
+  text-shadow: 0 10rpx 20rpx rgba(231, 76, 60, 0.3);
+}
+
+.score-label {
+  display: block;
+  font-size: 28rpx;
+  color: #7f8c8d;
+  margin-top: 10rpx;
+}
+
+/* 统计区域 */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 60rpx 0;
+  padding: 40rpx 0;
+  border-top: 2rpx dashed #dfe6e9;
+  border-bottom: 2rpx dashed #dfe6e9;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #636e72;
+  margin-bottom: 10rpx;
+}
+
+.stat-value {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #2d3436;
+}
+
+/* 按钮区域 */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+  margin-top: 50rpx;
+}
+
+.btn {
+  height: 90rpx;
+  line-height: 90rpx;
+  border-radius: 45rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  border: none;
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  color: white;
+}
+
+.btn.secondary {
+  background: #f8f9fa;
+  color: #2d3436;
+  border: 2rpx solid #dfe6e9;
+}
+
+.btn.share {
+  background: linear-gradient(90deg, #2ecc71, #27ae60);
+  color: white;
+}
+
+/* 勋章区域 */
+.medal-section {
+  margin-top: 50rpx;
+  padding-top: 40rpx;
+  border-top: 2rpx solid #f1f2f6;
+}
+
+.medal-label {
+  display: block;
+  font-size: 24rpx;
+  color: #7f8c8d;
+  margin-bottom: 20rpx;
+}
+
+.medal {
+  display: inline-flex;
+  align-items: center;
+  background: #fff9e6;
+  padding: 20rpx 40rpx;
+  border-radius: 60rpx;
+  border: 2rpx solid #fdcb6e;
+}
+
+.medal-icon {
+  font-size: 40rpx;
+  margin-right: 15rpx;
+}
+
+.medal-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #e17055;
+}

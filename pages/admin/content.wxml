@@ -1,0 +1,60 @@
+<view class="container">
+  <view class="header">
+    <text class="header-title">内容审核</text>
+  </view>
+
+  <view class="tabs">
+    <view 
+      class="tab-item {{activeTab === item.id ? 'active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="id"
+      bindtap="switchTab"
+      data-id="{{item.id}}"
+    >
+      <text class="tab-name">{{item.name}}</text>
+      <view class="tab-badge" wx:if="{{item.count > 0}}">
+        <text class="badge-count">{{item.count}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="contents-list" wx:if="{{!loading}}">
+    <view class="content-card" wx:for="{{contents}}" wx:key="id">
+      <view class="content-header">
+        <view class="user-info">
+          <image class="user-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+          <view class="user-detail">
+            <text class="user-nickname">{{item.author}}</text>
+            <text class="content-time">{{item.time}}</text>
+          </view>
+        </view>
+
+        <view class="content-type">
+          <text class="type-icon">{{item.type === 'post' ? '📰' : '📝'}}</text>
+          <text class="type-text">{{item.type === 'post' ? '动态' : '笔记'}}</text>
+        </view>
+      </view>
+
+      <view class="content-body">
+        <text class="content-text">{{item.content}}</text>
+      </view>
+
+      <view class="content-footer">
+        <view class="content-actions">
+          <button class="action-btn success" bindtap="approveContent" data-id="{{item.id}}">通过</button>
+          <button class="action-btn danger" bindtap="rejectContent" data-id="{{item.id}}">拒绝</button>
+        </view>
+        <button class="view-btn" bindtap="viewContent" data-id="{{item.id}}">查看详情</button>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:if="{{contents.length === 0}}">
+      <text class="empty-icon">📝</text>
+      <text class="empty-text">暂无内容</text>
+    </view>
+  </view>
+
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

@@ -1,0 +1,69 @@
+<view class="match-container">
+  <view class="match-header">
+    <text class="match-title">对战匹配</text>
+  </view>
+
+  <view class="match-tabs">
+    <view class="tab {{showCreate ? 'active' : ''}}" bindtap="switchTab" data-tab="create">
+      <text class="tab-text">创建房间</text>
+    </view>
+    <view class="tab {{!showCreate ? 'active' : ''}}" bindtap="switchTab" data-tab="join">
+      <text class="tab-text">加入房间</text>
+    </view>
+  </view>
+
+  <view class="match-content">
+    <view wx:if="{{showCreate}}" class="create-section">
+      <view class="section-title">选择难度</view>
+      <view class="options-grid">
+        <view class="option {{difficulty === 'all' ? 'active' : ''}}" bindtap="selectDifficulty" data-id="all">
+          <text class="option-text">全部</text>
+        </view>
+        <view class="option {{difficulty === 'easy' ? 'active' : ''}}" bindtap="selectDifficulty" data-id="easy">
+          <text class="option-text">简单</text>
+        </view>
+        <view class="option {{difficulty === 'medium' ? 'active' : ''}}" bindtap="selectDifficulty" data-id="medium">
+          <text class="option-text">中等</text>
+        </view>
+        <view class="option {{difficulty === 'hard' ? 'active' : ''}}" bindtap="selectDifficulty" data-id="hard">
+          <text class="option-text">困难</text>
+        </view>
+      </view>
+
+      <view class="section-title">选择分类</view>
+      <view class="options-grid">
+        <view class="option {{category === 'all' ? 'active' : ''}}" bindtap="selectCategory" data-id="all">
+          <text class="option-text">全部</text>
+        </view>
+        <view class="option {{category === 'military' ? 'active' : ''}}" bindtap="selectCategory" data-id="military">
+          <text class="option-text">军事理论</text>
+        </view>
+        <view class="option {{category === 'weapon' ? 'active' : ''}}" bindtap="selectCategory" data-id="weapon">
+          <text class="option-text">武器装备</text>
+        </view>
+        <view class="option {{category === 'history' ? 'active' : ''}}" bindtap="selectCategory" data-id="history">
+          <text class="option-text">军事历史</text>
+        </view>
+        <view class="option {{category === 'strategy' ? 'active' : ''}}" bindtap="selectCategory" data-id="strategy">
+          <text class="option-text">战略战术</text>
+        </view>
+        <view class="option {{category === 'defense' ? 'active' : ''}}" bindtap="selectCategory" data-id="defense">
+          <text class="option-text">国防教育</text>
+        </view>
+      </view>
+
+      <button class="create-btn" bindtap="createRoom" disabled="{{creating}}">
+        {{creating ? '创建中...' : '创建房间'}}
+      </button>
+    </view>
+
+    <view wx:else class="join-section">
+      <view class="section-title">输入房间号</view>
+      <input class="room-code-input" type="number" maxlength="6" placeholder="请输入6位房间号" bindinput="onRoomCodeInput" value="{{roomCode}}" />
+      
+      <button class="join-btn" bindtap="joinRoom" disabled="{{joining}}">
+        {{joining ? '加入中...' : '加入房间'}}
+      </button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,268 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #1a1a2e;
+  padding-bottom: 40rpx;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  border: 3rpx solid #e94560;
+}
+
+.user-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.nickname {
+  font-size: 28rpx;
+  color: #eaeaea;
+  font-weight: bold;
+}
+
+.rank-badge {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  background: rgba(233, 69, 96, 0.2);
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+}
+
+.rank-icon {
+  font-size: 20rpx;
+}
+
+.rank-text {
+  font-size: 22rpx;
+  color: #e94560;
+}
+
+.points-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(233, 69, 96, 0.1);
+  padding: 16rpx 24rpx;
+  border-radius: 16rpx;
+}
+
+.points-label {
+  font-size: 20rpx;
+  color: #7a7a8c;
+}
+
+.points-value {
+  font-size: 32rpx;
+  color: #e94560;
+  font-weight: bold;
+}
+
+.banner {
+  margin: 30rpx;
+  padding: 40rpx;
+  background: linear-gradient(135deg, #e94560 0%, #fbbf24 100%);
+  border-radius: 20rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.banner-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 2rpx 8rpx rgba(0,0,0,0.2);
+}
+
+.banner-subtitle {
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.9);
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.title-text {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #eaeaea;
+}
+
+.more-text {
+  font-size: 24rpx;
+  color: #7a7a8c;
+}
+
+.level-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  padding: 0 30rpx;
+}
+
+.level-item {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 24rpx;
+  background: #16213e;
+  border-radius: 16rpx;
+  transition: all 0.3s;
+}
+
+.level-item:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+.level-icon {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16rpx;
+}
+
+.icon-text {
+  font-size: 40rpx;
+}
+
+.level-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.level-header {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.level-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #eaeaea;
+}
+
+.lock-icon {
+  font-size: 24rpx;
+}
+
+.level-desc {
+  font-size: 22rpx;
+  color: #7a7a8c;
+}
+
+.level-arrow {
+  display: flex;
+  align-items: center;
+}
+
+.arrow-text {
+  font-size: 48rpx;
+  color: #7a7a8c;
+}
+
+.medals-section {
+  display: flex;
+  gap: 20rpx;
+  padding: 0 30rpx;
+  margin-top: 20rpx;
+}
+
+.province-rank,
+.medal-count {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30rpx;
+  background: #16213e;
+  border-radius: 16rpx;
+  gap: 12rpx;
+}
+
+.rank-label,
+.medal-label {
+  font-size: 22rpx;
+  color: #7a7a8c;
+}
+
+.rank-number,
+.medal-number {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #e94560;
+}
+
+.quick-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 30rpx;
+  margin-top: 20rpx;
+}
+
+.action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+  padding: 20rpx;
+  background: #16213e;
+  border-radius: 16rpx;
+  min-width: 180rpx;
+}
+
+.action-icon {
+  font-size: 40rpx;
+}
+
+.action-text {
+  font-size: 24rpx;
+  color: #eaeaea;
+}
