@@ -14,7 +14,9 @@
     "pages/user/medals",
     "pages/admin/user",
     "pages/admin/content",
-    "pages/admin/data"
+    "pages/admin/data",
+    "pages/battle/match",
+    "pages/battle/room"
   ],
   "window": {
     "backgroundColor": "#1a1a2e",

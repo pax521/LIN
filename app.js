@@ -6,7 +6,7 @@ App({
       userRank: "列兵",
       userPoints: 0,
       userMedals: [],
-      userRole: "user",
+      userRole: "admin",
       isVIP: false,
       province: "",
       teamId: null
@@ -16,7 +16,7 @@ App({
       console.error("请使用 2.2.3 或以上的基础库以使用云能力");
     } else {
       wx.cloud.init({
-        env: this.globalData.env,
+        env: "cloud1-7gs5ngl2df865cf0",
         traceUser: true,
       });
     }
@@ -80,7 +80,7 @@ App({
   },
   
   addMedal: function(medal) {
-    if (!this.globalData.userMedals.includes(medal)) {
+    if (this.globalData.userMedals.indexOf(medal) === -1) {
       this.globalData.userMedals.push(medal);
       wx.cloud.callFunction({
         name: 'addUserMedal',
